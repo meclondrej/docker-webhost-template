@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  siteslave:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./htdocs:/var/www/html
+  assetsslave:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./assets:/var/www/html
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      # Edit MYSQL_ROOT_PASSWORD
+      MYSQL_ROOT_PASSWORD: very_secure_pwd
+    volumes:
+      - ./database:/var/lib/mysql
+  master:
+    image: nginx
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+    ports:
+      - 80:80
+    depends_on:
+      - siteslave
+      - assetsslave
