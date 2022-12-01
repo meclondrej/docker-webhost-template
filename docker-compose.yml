@@ -13,6 +13,12 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./assets:/var/www/html
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      # Edit MYSQL_ROOT_PASSWORD
+      MYSQL_ROOT_PASSWORD: very_secure_pwd
   master:
     image: nginx
     volumes:
