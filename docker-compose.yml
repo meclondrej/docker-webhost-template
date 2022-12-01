@@ -19,6 +19,8 @@ services:
     environment:
       # Edit MYSQL_ROOT_PASSWORD
       MYSQL_ROOT_PASSWORD: very_secure_pwd
+    volumes:
+      - ./database:/var/lib/mysql
   master:
     image: nginx
     volumes:
