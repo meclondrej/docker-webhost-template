@@ -20,7 +20,9 @@ Those are:
 ## Running the docker compose
 
 It is important to know that the folders ```htdocs/```, ```assets/``` and ```database/``` are not created, so you need to create them manually. Next, put your html documents in the ```htdocs/``` folder and your assets (images, css, videos, etc.) into the ```assets/``` folder. You don't have to do anything with the ```database/``` folder.
+
 **NOTE: This setup process can be done easily with the setup.sh bash script**
+
 Now run ```docker compose up``` in your linux shell, set up your database in Adminer and you're good to go.
 
 ### PHP Modules
