@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  siteslave:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./htdocs:/var/www/html
+  assetsslave:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./assets:/var/www/html
+  master:
+    image: nginx
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+    ports:
+      - 80:80
+    depends_on:
+      - siteslave
+      - assetsslave
